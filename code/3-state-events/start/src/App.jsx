@@ -23,6 +23,8 @@ function App() {
     const [ recipe, setRecipe ] = useState(initialRecipe);
 
     // TODO: Add new state property
+    // TODO: Add new state property
+    const [ prepared, setPrepared ] = useState(false);
 
     // TODO: Create ingredientClick event listener
     function ingredientClick(index) {
@@ -32,6 +34,9 @@ function App() {
     }
 
     // TODO: Add the effect hook
+    useEffect(() => {
+        setPrepared(recipe.ingredients.every(i => i.prepared));
+    }, [recipe]);
 
     return (
         <article>
@@ -50,6 +55,7 @@ function App() {
             />
 
             {/* TODO: Add the prep work display */}
+            { prepared ? <h2>Prep work done!</h2> : <h2>Just keep chopping.</h2>}
         </article>
     )
 }
